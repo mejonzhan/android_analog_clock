@@ -6,6 +6,6 @@
     <com.example.analogcolck.AnalogClockView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/black" />
+        android:background="#ffff0000" />
 
 </RelativeLayout>
