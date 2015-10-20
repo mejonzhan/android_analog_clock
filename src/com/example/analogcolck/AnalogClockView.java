@@ -3,13 +3,10 @@ package com.example.analogcolck;
 import java.util.Date;
 
 import android.R.color;
-import android.R.integer;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Bitmap.Config;
 import android.graphics.Paint.Style;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -42,8 +39,6 @@ public class AnalogClockView extends View {
 	private int mCenterX;
 	private int mCenterY;
 	
-	private Bitmap mBackground;
-
 	public AnalogClockView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		
@@ -137,16 +132,8 @@ public class AnalogClockView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		
-		if (mBackground == null) {
-			
-			mBackground = Bitmap.createBitmap(getWidth(), getHeight(), Config.ARGB_8888);
-			Canvas bmpCanvas = new Canvas(mBackground);
-			drawCircel(bmpCanvas);
-			drawHoure(bmpCanvas);
-		}
-		
-		canvas.drawBitmap(mBackground, 0, 0, null);
-		
+		drawCircel(canvas);
+		drawHoure(canvas);
 		Point point = getPoint(mHour, (int) (mRadius * 0.6), mCenterX, mCenterY);
 		canvas.drawLine(mCenterX, mCenterY, point.x, point.y, mHourPaint);
 		
@@ -182,6 +169,7 @@ public class AnalogClockView extends View {
 
 		paint.setStyle(Style.STROKE);
 		paint.setAntiAlias(true);
+		paint.setColor(Color.WHITE);
 		paint.setShadowLayer(8, 5, 5, color);
 
 		return paint;
